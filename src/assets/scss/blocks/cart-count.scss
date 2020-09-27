@@ -1,0 +1,28 @@
+.cart-count {
+  &__button {
+    &:hover,
+    &:focus {
+      outline: 1px solid black;
+      //opacity: 0.5;
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
+  }
+
+  &__value {
+    margin: 0 2px;
+    width: 40px;
+    text-align: center;
+
+    /* Firefox */
+    appearance: textfield;
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+  }
+}

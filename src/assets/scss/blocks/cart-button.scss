@@ -1,0 +1,42 @@
+$inTextColor            : grey;
+$inTextSelectColor      : red;
+
+.cart-button {
+  &:hover,
+  &:focus {
+    opacity: 0.5;
+  }
+
+  &:active {
+    opacity: 0.3;
+  }
+
+  &--in-text {
+    padding: 0;
+    color: $inTextColor;
+    background: none;
+    border: none;
+    border-bottom: 1px dotted $inTextColor;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+      color: $inTextSelectColor;
+      border-color: $inTextSelectColor;
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
+  }
+
+  &--attention {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: smaller;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #ed1c24;
+    border-radius: 5px;
+  }
+}

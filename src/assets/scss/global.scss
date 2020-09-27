@@ -8,7 +8,7 @@ html {
     font-size: 16px;
   }
 
-  @media screen and (max-width: $tableWidth) {
+  @media screen and (max-width: $tabletWidth) {
     font-size: 15px;
   }
 
@@ -56,14 +56,14 @@ li {
 section,
 .section {
   position: relative;
-  padding: 40px 0;
+  padding: 20px 0;
 
   @media screen and (max-width: $smDesktopWidth) {
-    padding: 36px 0;
+    padding: 16px 0;
   }
 
-  @media screen and (max-width: $tableWidth) {
-    padding: 28px 0;
+  @media screen and (max-width: $tabletWidth) {
+    padding: 8px 0;
   }
 
   @media screen and (max-width: $phoneWidth) {
@@ -93,10 +93,10 @@ section,
   max-width: $desktopWidth;
 
   @media screen and (max-width: $smDesktopWidth) {
-    max-width: $tableWidth;
+    max-width: $tabletWidth;
   }
 
-  @media screen and (max-width: $tableWidth) {
+  @media screen and (max-width: $tabletWidth) {
     max-width: $phoneWidth;
   }
 
