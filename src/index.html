@@ -6,77 +6,77 @@
 </head>
 <body>
   <div id="root"></div>
-  <section class="cart container">
-    <h2 class="visually-hidden">Товары в корзине</h2>
-    <form class="cart__form">
-      <ul class="cart__list">
-        <li class="cart__item">
-          <img src="./assets/img/RTX3000.jpg" alt="Видеокарта NVIDIA GeForce RTX 3000" class="cart__picture" width="100" height="100">
-          <div class="cart__info">
-            <div class="cart__row cart-row">
-              <h3 class="cart__title">
-                <a href="#" class="cart__link">Видеокарта NVIDIA GeForce RTX 3000</a>
-              </h3>
-              <div class="cart__price-wrapper">
-                <p class="cart__price-total">100 000 &#8381;</p>
-                <p class="cart__price">2 x 50 000 &#8381;</p>
-              </div>
-            </div>
-            <div class="cart__row cart-row">
-              <button class="cart__delete cart-button  cart-button--in-text" type="button">Удалить</button>
-              <div class="cart__count-wrapper cart-count cart-row">
-                <button class="cart-count__button" type="button">-</button>
-                <input type="number" class="cart-count__value" value="2" min="1" aria-label="Количество">
-                <button class="cart-count__button" type="button">+</button>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="cart__item">
-          <img src="./assets/img/WI-XB400.jpg" alt="Видеокарта NVIDIA GeForce RTX 3000" class="cart__picture" width="100" height="100">
-          <div class="cart__info">
-            <div class="cart__row cart-row">
-              <h3 class="cart__title">
-                <a href="#" class="cart__link">Наушники Bluetooth Sony WI-XB400</a>
-              </h3>
-              <div class="cart__price-wrapper">
-                <p class="cart__price-total">5 980 &#8381;</p>
-              </div>
-            </div>
-            <div class="cart__row cart-row">
-              <button class="cart__delete cart-button cart-button--in-text" type="button">Удалить</button>
-              <div class="cart__count-wrapper cart-count cart-row">
-                <button class="cart-count__button" type="button">-</button>
-                <input type="number" class="cart-count__value" value="1" min="1" aria-label="Количество">
-                <button class="cart-count__button" type="button">+</button>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-      <div class="cart__total">
-        <div class="cart__row cart__total-row cart-row">
-          <p class="cart__total-count">В корзине 2 товара</p>
-          <p class="cart__total-price">105 980 &#8381;</p>
-        </div>
-        <button class="cart__submit cart-button cart-button--attention" type="submit">Продолжить оформление</button>
-      </div>
-    </form>
-  </section>
-  <section class="cart-addition container">
-    <h2 class="cart-addition__title">Добавить товар</h2>
-    <form action="#" class="cart-addition__form">
-      <select class="cart-addition__select" aria-label="Выбрать товар из списка">
-        <option value="RTX_3000">Видеокарта NVIDIA GeForce RTX 3000</option>
-        <option value="WI-XB400">Наушники Bluetooth Sony WI-XB400</option>
-      </select>
-      <div class="cart-addition__count-wrapper cart-count">
-        <button class="cart-count__button" type="button">-</button>
-        <input type="number" class="cart-count__value" value="1" min="1" aria-label="Количество">
-        <button class="cart-count__button" type="button">+</button>
-      </div>
-      <button class="cart-addition__add cart-button cart-button--attention" type="submit">Добавить</button>
-    </form>
-  </section>
+<!--  <section class="cart container">-->
+<!--    <h2 class="visually-hidden">Товары в корзине</h2>-->
+<!--    <form class="cart__form">-->
+<!--      <ul class="cart__list">-->
+<!--        <li class="cart__item">-->
+<!--          <img src="./assets/img/RTX3000.jpg" alt="Видеокарта NVIDIA GeForce RTX 3000" class="cart__picture" width="100" height="100">-->
+<!--          <div class="cart__info">-->
+<!--            <div class="cart__row cart-row">-->
+<!--              <h3 class="cart__title">-->
+<!--                <a href="#" class="cart__link">Видеокарта NVIDIA GeForce RTX 3000</a>-->
+<!--              </h3>-->
+<!--              <div class="cart__price-wrapper">-->
+<!--                <p class="cart__price-total">100 000 &#8381;</p>-->
+<!--                <p class="cart__price">2 x 50 000 &#8381;</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="cart__row cart-row">-->
+<!--              <button class="cart__delete cart-button  cart-button&#45;&#45;in-text" type="button">Удалить</button>-->
+<!--              <div class="cart__count-wrapper cart-count cart-row">-->
+<!--                <button class="cart-count__button" type="button">-</button>-->
+<!--                <input type="number" class="cart-count__value" value="2" min="1" aria-label="Количество">-->
+<!--                <button class="cart-count__button" type="button">+</button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li class="cart__item">-->
+<!--          <img src="./assets/img/WI-XB400.jpg" alt="Видеокарта NVIDIA GeForce RTX 3000" class="cart__picture" width="100" height="100">-->
+<!--          <div class="cart__info">-->
+<!--            <div class="cart__row cart-row">-->
+<!--              <h3 class="cart__title">-->
+<!--                <a href="#" class="cart__link">Наушники Bluetooth Sony WI-XB400</a>-->
+<!--              </h3>-->
+<!--              <div class="cart__price-wrapper">-->
+<!--                <p class="cart__price-total">5 980 &#8381;</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="cart__row cart-row">-->
+<!--              <button class="cart__delete cart-button cart-button&#45;&#45;in-text" type="button">Удалить</button>-->
+<!--              <div class="cart__count-wrapper cart-count cart-row">-->
+<!--                <button class="cart-count__button" type="button">-</button>-->
+<!--                <input type="number" class="cart-count__value" value="1" min="1" aria-label="Количество">-->
+<!--                <button class="cart-count__button" type="button">+</button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--      <div class="cart__total">-->
+<!--        <div class="cart__row cart__total-row cart-row">-->
+<!--          <p class="cart__total-count">В корзине 2 товара</p>-->
+<!--          <p class="cart__total-price">105 980 &#8381;</p>-->
+<!--        </div>-->
+<!--        <button class="cart__submit cart-button cart-button&#45;&#45;attention" type="submit">Продолжить оформление</button>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </section>-->
+<!--  <section class="cart-addition container">-->
+<!--    <h2 class="cart-addition__title">Добавить товар</h2>-->
+<!--    <form action="#" class="cart-addition__form">-->
+<!--      <select class="cart-addition__select" aria-label="Выбрать товар из списка">-->
+<!--        <option value="RTX_3000">Видеокарта NVIDIA GeForce RTX 3000</option>-->
+<!--        <option value="WI-XB400">Наушники Bluetooth Sony WI-XB400</option>-->
+<!--      </select>-->
+<!--      <div class="cart-addition__count-wrapper cart-count">-->
+<!--        <button class="cart-count__button" type="button">-</button>-->
+<!--        <input type="number" class="cart-count__value" value="1" min="1" aria-label="Количество">-->
+<!--        <button class="cart-count__button" type="button">+</button>-->
+<!--      </div>-->
+<!--      <button class="cart-addition__add cart-button cart-button&#45;&#45;attention" type="submit">Добавить</button>-->
+<!--    </form>-->
+<!--  </section>-->
 </body>
 </html>

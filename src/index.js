@@ -1,14 +1,14 @@
 // import './js/common';
 import './assets/scss/main.scss';
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import Example from './components/example/example.jsx';
-//
-// const init = () => {
-//   ReactDOM.render(
-//       <Example/>,
-//       document.querySelector(`#root`)
-//   );
-// };
-//
-// init();
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Cart from "./js/components/cart/cart.jsx";
+
+const init = () => {
+  ReactDOM.render(
+      <Cart/>,
+      document.querySelector(`#root`)
+  );
+};
+
+init();
