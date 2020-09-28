@@ -1,4 +1,5 @@
 import {extendObject} from "./utils/common";
+import {goods} from "./mocks/goods";
 
 const initialState = {
   allGoods: [],
@@ -18,8 +19,10 @@ const ActionCreator = {
 
 const Operation = {
   loadGoods: () => (dispatch, getState, api) => {
-    return api.get(`/goods`)
-      .then((response) => dispatch(ActionCreator.loadGoods(response.data)));
+    dispatch(ActionCreator.loadGoods(goods));
+
+    // return api.get(`/goods`)
+    //   .then((response) => dispatch(ActionCreator.loadGoods(response.data)));
   }
 };
 
