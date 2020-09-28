@@ -1,14 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const CartAddition = () => {
+const CartAddition = (props) => {
+  const {allGoods} = props;
   return (
     <section className="cart-addition container">
       <h2 className="cart-addition__title">Добавить товар</h2>
       <form action="#" className="cart-addition__form">
         <select className="cart-addition__select" aria-label="Выбрать товар из списка">
-          <option value="RTX_3000">Видеокарта NVIDIA GeForce RTX 3000</option>
-          <option value="WI-XB400">Наушники Bluetooth Sony WI-XB400</option>
+          {allGoods.map((it) => {
+            return (
+              <option key={it.id} value={it.id}>{it.name}</option>
+            );
+          })}
         </select>
         <div className="cart-addition__count-wrapper cart-count">
           <button className="cart-count__button" type="button">-</button>

@@ -2,9 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import CartItem from "../cart-item/cart-item.jsx";
 import CartAddition from "../cart-addition/cart-addition.jsx";
+import {connect} from "react-redux";
 
 const Cart = (props) => {
-  const {needAddition = true} = props;
+  const {allGoods, selectedGoods, needAddition = true} = props;
   return (
     <>
       <section className="cart container">
@@ -25,9 +26,15 @@ const Cart = (props) => {
           </div>
         </form>
       </section>
-      {needAddition && <CartAddition/>}
+      {needAddition && <CartAddition allGoods={allGoods}/>}
     </>
   );
 };
 
-export default Cart;
+const mapStateToProps = (state) => ({
+  allGoods: state.allGoods,
+  selectedGoods: state.selectedGoods,
+});
+
+export {Cart};
+export default connect(mapStateToProps)(Cart);
