@@ -8,10 +8,11 @@ import {extendObject} from "../../utils/common";
 import {allGoodsToSelectedGoods} from "../../adapters/goods";
 
 const Cart = (props) => {
-  const {allGoods, selectedGoods, needAddition = true, addGoods, deleteGoods} = props;
-  
+  const {allGoods, selectedGoods, addGoods, deleteGoods} = props;
+
   return (
     <>
+      <CartAddition allGoods={allGoods} onFormSubmit={addGoods}/>
       <section className="cart container">
         <h2 className="visually-hidden">Товары в корзине</h2>
         <form className="cart__form">
@@ -27,7 +28,6 @@ const Cart = (props) => {
           </div>
         </form>
       </section>
-      {needAddition && <CartAddition allGoods={allGoods} onFormSubmit={addGoods}/>}
     </>
   );
 };
