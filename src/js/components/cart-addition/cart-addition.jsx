@@ -30,4 +30,15 @@ const CartAddition = (props) => {
   );
 };
 
+CartAddition.propTypes = {
+  allGoods: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        picture: PropTypes.string.isRequired,
+      })).isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+};
+
 export default CartAddition;

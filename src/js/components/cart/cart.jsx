@@ -47,6 +47,30 @@ const Cart = (props) => {
   );
 };
 
+Cart.propTypes = {
+  allGoods: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        picture: PropTypes.string.isRequired,
+      })).isRequired,
+  selectedGoods: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        picture: PropTypes.string.isRequired,
+        count: PropTypes.number.isRequired,
+      })).isRequired,
+  countGoods: PropTypes.number.isRequired,
+  totalGoods: PropTypes.number.isRequired,
+  addGoods: PropTypes.func.isRequired,
+  deleteGoods: PropTypes.func.isRequired,
+  changeGoodsCount: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = (state) => ({
   allGoods: state.allGoods,
   selectedGoods: state.selectedGoods,

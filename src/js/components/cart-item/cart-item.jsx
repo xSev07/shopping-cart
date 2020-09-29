@@ -35,4 +35,17 @@ const CartItem = (props) => {
   );
 };
 
+CartItem.propTypes = {
+  goods: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        picture: PropTypes.string.isRequired,
+        count: PropTypes.number.isRequired,
+      })).isRequired,
+  onDeleteButtonClick: PropTypes.func.isRequired,
+  onCounterChange: PropTypes.func.isRequired,
+};
+
 export default CartItem;

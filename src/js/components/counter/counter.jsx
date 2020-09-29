@@ -45,4 +45,10 @@ const Counter = forwardRef((props, ref) => {
 
 Counter.displayName = `Counter`;
 
+Counter.propTypes = {
+  className: PropTypes.string.isRequired,
+  startCount: PropTypes.number,
+  onChange: PropTypes.func,
+};
+
 export default Counter;
