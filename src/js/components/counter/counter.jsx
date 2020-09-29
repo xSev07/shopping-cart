@@ -2,6 +2,7 @@ import React, {useState, forwardRef} from "react";
 import PropTypes from "prop-types";
 
 const Counter = forwardRef((props, ref) => {
+  const {className} = props;
   const [count, setCount] = useState(1);
   const clickIncrementHandler = () => {
     if (count > 1) {
@@ -19,7 +20,7 @@ const Counter = forwardRef((props, ref) => {
   };
 
   return (
-    <div className="cart-addition__count-wrapper cart-count">
+    <div className={`cart-count ${className}`}>
       <button onClick={clickIncrementHandler} className="cart-count__button" type="button">-</button>
       <input onChange={changeCountHandler} ref={ref} type="number" className="cart-count__value" value={count} min="1" aria-label="Количество"/>
       <button onClick={clickDecrementHandler} className="cart-count__button" type="button">+</button>

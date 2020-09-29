@@ -3,19 +3,20 @@ import PropTypes from "prop-types";
 import CartItem from "../cart-item/cart-item.jsx";
 import CartAddition from "../cart-addition/cart-addition.jsx";
 import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer";
+import {extendObject} from "../../utils/common";
+import {allGoodsToSelectedGoods} from "../../adapters/goods";
 
 const Cart = (props) => {
-  const {allGoods, selectedGoods, needAddition = true} = props;
+  const {allGoods, selectedGoods, needAddition = true, addGoods} = props;
+
   return (
     <>
       <section className="cart container">
         <h2 className="visually-hidden">Товары в корзине</h2>
         <form className="cart__form">
           <ul className="cart__list">
-            <CartItem/>
-            <CartItem/>
-            <CartItem/>
-            <CartItem/>
+            {selectedGoods.map((it) => <CartItem key={it.id} goods={it}/>)}
           </ul>
           <div className="cart__total">
             <div className="cart__row cart__total-row cart-row">
@@ -26,7 +27,7 @@ const Cart = (props) => {
           </div>
         </form>
       </section>
-      {needAddition && <CartAddition allGoods={allGoods}/>}
+      {needAddition && <CartAddition allGoods={allGoods} onFormSubmit={addGoods}/>}
     </>
   );
 };
@@ -36,5 +37,35 @@ const mapStateToProps = (state) => ({
   selectedGoods: state.selectedGoods,
 });
 
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  const {allGoods, selectedGoods} = stateProps;
+  const {dispatch} = dispatchProps;
+  const reverseSelectedGoods = selectedGoods.slice().reverse();
+  const addGoods = (id, value) => {
+    let newSelectedGoods = [];
+    const index = selectedGoods.findIndex((it) => it.id === id);
+    if (index === -1) {
+      const currentGoods = allGoods.find((it) => it.id === id);
+      newSelectedGoods = selectedGoods.slice();
+      newSelectedGoods.push(allGoodsToSelectedGoods(currentGoods, value));
+    } else {
+      const currentGoods = selectedGoods[index];
+      const newGoods = extendObject(currentGoods, {count: currentGoods.count + value});
+      newSelectedGoods = [...selectedGoods.slice(0, index), newGoods, ...selectedGoods.slice(index + 1)];
+    }
+    dispatch(ActionCreator.addSelectedGoods(newSelectedGoods));
+  };
+
+  return extendObject(
+      stateProps,
+      dispatchProps,
+      ownProps,
+      {
+        selectedGoods: reverseSelectedGoods,
+        addGoods
+      }
+  );
+};
+
 export {Cart};
-export default connect(mapStateToProps)(Cart);
+export default connect(mapStateToProps, null, mergeProps)(Cart);

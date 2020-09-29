@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import Counter from "../counter/counter.jsx";
 
 const CartAddition = (props) => {
-  const {allGoods} = props;
+  const {allGoods, onFormSubmit} = props;
   const counterRef = useRef(null);
   const listRef = useRef(null);
 
   const submitFormHandler = (evt) => {
     evt.preventDefault();
+    onFormSubmit(listRef.current.value, +counterRef.current.value);
   };
 
   return (
@@ -22,7 +23,7 @@ const CartAddition = (props) => {
             );
           })}
         </select>
-        <Counter ref={counterRef}/>
+        <Counter ref={counterRef} className={`cart-addition__count-wrapper`}/>
         <button className="cart-addition__add cart-button cart-button--attention" type="submit">Добавить</button>
       </form>
     </section>
