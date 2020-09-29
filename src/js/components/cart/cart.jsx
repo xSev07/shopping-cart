@@ -8,14 +8,15 @@ import {extendObject} from "../../utils/common";
 import {allGoodsToSelectedGoods} from "../../adapters/goods";
 
 const Cart = (props) => {
-  const {allGoods, selectedGoods, addGoods, deleteGoods, changeGoodsCount} = props;
+  const {allGoods, selectedGoods, countGoods, totalGoods,
+    addGoods, deleteGoods, changeGoodsCount, onFormSubmit} = props;
 
   return (
     <>
       <CartAddition allGoods={allGoods} onFormSubmit={addGoods}/>
       <section className="cart container">
         <h2 className="visually-hidden">Товары в корзине</h2>
-        <form className="cart__form">
+        <form className="cart__form" onSubmit={onFormSubmit}>
           <ul className="cart__list">
             {selectedGoods.map((it) =>
               <CartItem
@@ -27,10 +28,16 @@ const Cart = (props) => {
           </ul>
           <div className="cart__total">
             <div className="cart__row cart__total-row cart-row">
-              <p className="cart__total-count">В корзине 2 товара</p>
-              <p className="cart__total-price">105 980 &#8381;</p>
+              <p className="cart__total-count">В корзине {countGoods} товара</p>
+              <p className="cart__total-price">{totalGoods} &#8381;</p>
             </div>
-            <button className="cart__submit cart-button cart-button--attention" type="submit">Продолжить оформление</button>
+            <button
+              className="cart__submit cart-button cart-button--attention"
+              type="submit"
+              disabled={countGoods === 0}
+            >
+              Продолжить оформление
+            </button>
           </div>
         </form>
       </section>
@@ -41,6 +48,8 @@ const Cart = (props) => {
 const mapStateToProps = (state) => ({
   allGoods: state.allGoods,
   selectedGoods: state.selectedGoods,
+  countGoods: state.selectedGoods.reduce((acc, it) => acc + it.count, 0),
+  totalGoods: state.selectedGoods.reduce((acc, it) => acc + it.price * it.count, 0),
 });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {

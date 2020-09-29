@@ -2,7 +2,7 @@ $inTextColor            : grey;
 $inTextSelectColor      : red;
 
 .cart-button {
-  &:hover,
+  &:hover:not(:disabled),
   &:focus {
     opacity: 0.5;
   }

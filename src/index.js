@@ -24,7 +24,7 @@ const init = () => {
 
   ReactDOM.render(
       <Provider store={store}>
-        <Cart/>
+        <Cart onFormSubmit={() => {}}/>
       </Provider>,
       document.querySelector(`#root`)
   );
