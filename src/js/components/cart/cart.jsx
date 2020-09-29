@@ -8,7 +8,7 @@ import {extendObject} from "../../utils/common";
 import {allGoodsToSelectedGoods} from "../../adapters/goods";
 
 const Cart = (props) => {
-  const {allGoods, selectedGoods, addGoods, deleteGoods} = props;
+  const {allGoods, selectedGoods, addGoods, deleteGoods, changeGoodsCount} = props;
 
   return (
     <>
@@ -17,7 +17,13 @@ const Cart = (props) => {
         <h2 className="visually-hidden">Товары в корзине</h2>
         <form className="cart__form">
           <ul className="cart__list">
-            {selectedGoods.map((it) => <CartItem key={it.id} goods={it} onDeleteButtonClick={deleteGoods}/>)}
+            {selectedGoods.map((it) =>
+              <CartItem
+                key={it.id}
+                goods={it}
+                onDeleteButtonClick={deleteGoods}
+                onCounterChange={changeGoodsCount}
+              />)}
           </ul>
           <div className="cart__total">
             <div className="cart__row cart__total-row cart-row">
@@ -62,6 +68,13 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     dispatch(ActionCreator.changeSelectedGoods(newSelectedGoods));
   };
 
+  const changeGoodsCount = (id, value) => {
+    const index = selectedGoods.findIndex((it) => it.id === id);
+    const newGoods = extendObject(selectedGoods[index], {count: value});
+    const newSelectedGoods = [...selectedGoods.slice(0, index), newGoods, ...selectedGoods.slice(index + 1)];
+    dispatch(ActionCreator.changeSelectedGoods(newSelectedGoods));
+  };
+
   return extendObject(
       stateProps,
       dispatchProps,
@@ -70,6 +83,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
         selectedGoods: reverseSelectedGoods,
         addGoods,
         deleteGoods,
+        changeGoodsCount,
       }
   );
 };

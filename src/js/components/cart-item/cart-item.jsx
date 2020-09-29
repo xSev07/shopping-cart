@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useRef} from "react";
 import PropTypes from "prop-types";
 import Counter from "../counter/counter.jsx";
 
 const CartItem = (props) => {
-  const {goods, onDeleteButtonClick} = props;
+  const {goods, onDeleteButtonClick, onCounterChange} = props;
   const {id, name, price, count, picture} = goods;
+  const counterRef = useRef(null);
   const totalPrice = count === 1 ? price : price * count;
 
   return (
@@ -22,7 +23,12 @@ const CartItem = (props) => {
         </div>
         <div className="cart__row cart-row">
           <button onClick={() => onDeleteButtonClick(id)} className="cart__delete cart-button  cart-button--in-text" type="button">Удалить</button>
-          <Counter className={`cart__count-wrapper cart-row`}/>
+          <Counter
+            ref={counterRef}
+            className={`cart__count-wrapper cart-row`}
+            startCount={count}
+            onChange={(value) => onCounterChange(id, value)}
+          />
         </div>
       </div>
     </li>
