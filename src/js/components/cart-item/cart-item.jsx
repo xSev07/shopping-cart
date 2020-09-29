@@ -17,8 +17,8 @@ const CartItem = (props) => {
             <a href="#" className="cart__link">{name}</a>
           </h3>
           <div className="cart__price-wrapper">
-            <p className="cart__price-total">{totalPrice} &#8381;</p>
-            {count > 1 && <p className="cart__price">{count} x {price} &#8381;</p>}
+            <p className="cart__price-total">{totalPrice.toLocaleString()} &#8381;</p>
+            {count > 1 && <p className="cart__price">{count.toLocaleString()} x {price.toLocaleString()} &#8381;</p>}
           </div>
         </div>
         <div className="cart__row cart-row">

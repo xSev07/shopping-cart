@@ -4,12 +4,14 @@ import CartItem from "../cart-item/cart-item.jsx";
 import CartAddition from "../cart-addition/cart-addition.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer";
-import {extendObject} from "../../utils/common";
+import {declOfNum, extendObject} from "../../utils/common";
 import {allGoodsToSelectedGoods} from "../../adapters/goods";
+import {Declination} from "../../const";
 
 const Cart = (props) => {
   const {allGoods, selectedGoods, countGoods, totalGoods,
     addGoods, deleteGoods, changeGoodsCount, onFormSubmit} = props;
+  const declGoods = declOfNum(countGoods, Declination.GOODS);
 
   return (
     <>
@@ -28,8 +30,8 @@ const Cart = (props) => {
           </ul>
           <div className="cart__total">
             <div className="cart__row cart__total-row cart-row">
-              <p className="cart__total-count">В корзине {countGoods} товара</p>
-              <p className="cart__total-price">{totalGoods} &#8381;</p>
+              <p className="cart__total-count">В корзине {countGoods.toLocaleString()} {declGoods}</p>
+              <p className="cart__total-price">{totalGoods.toLocaleString()} &#8381;</p>
             </div>
             <button
               className="cart__submit cart-button cart-button--attention"
