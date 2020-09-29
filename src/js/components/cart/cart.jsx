@@ -8,15 +8,15 @@ import {extendObject} from "../../utils/common";
 import {allGoodsToSelectedGoods} from "../../adapters/goods";
 
 const Cart = (props) => {
-  const {allGoods, selectedGoods, needAddition = true, addGoods} = props;
-
+  const {allGoods, selectedGoods, needAddition = true, addGoods, deleteGoods} = props;
+  
   return (
     <>
       <section className="cart container">
         <h2 className="visually-hidden">Товары в корзине</h2>
         <form className="cart__form">
           <ul className="cart__list">
-            {selectedGoods.map((it) => <CartItem key={it.id} goods={it}/>)}
+            {selectedGoods.map((it) => <CartItem key={it.id} goods={it} onDeleteButtonClick={deleteGoods}/>)}
           </ul>
           <div className="cart__total">
             <div className="cart__row cart__total-row cart-row">
@@ -53,7 +53,13 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       const newGoods = extendObject(currentGoods, {count: currentGoods.count + value});
       newSelectedGoods = [...selectedGoods.slice(0, index), newGoods, ...selectedGoods.slice(index + 1)];
     }
-    dispatch(ActionCreator.addSelectedGoods(newSelectedGoods));
+    dispatch(ActionCreator.changeSelectedGoods(newSelectedGoods));
+  };
+
+  const deleteGoods = (id) => {
+    const index = selectedGoods.findIndex((it) => it.id === id);
+    const newSelectedGoods = [...selectedGoods.slice(0, index), ...selectedGoods.slice(index + 1)];
+    dispatch(ActionCreator.changeSelectedGoods(newSelectedGoods));
   };
 
   return extendObject(
@@ -62,7 +68,8 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       ownProps,
       {
         selectedGoods: reverseSelectedGoods,
-        addGoods
+        addGoods,
+        deleteGoods,
       }
   );
 };

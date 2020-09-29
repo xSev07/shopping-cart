@@ -9,7 +9,7 @@ const initialState = {
 
 const ActionType = {
   LOAD_GOODS: `LOAD_GOODS`,
-  ADD_SELECTED_GOODS: `ADD_SELECTED_GOODS`,
+  CHANGE_SELECTED_GOODS: `CHANGE_SELECTED_GOODS`,
 };
 
 const ActionCreator = {
@@ -17,8 +17,8 @@ const ActionCreator = {
     type: ActionType.LOAD_GOODS,
     payload: goods,
   }),
-  addSelectedGoods: (goods) => ({
-    type: ActionType.ADD_SELECTED_GOODS,
+  changeSelectedGoods: (goods) => ({
+    type: ActionType.CHANGE_SELECTED_GOODS,
     payload: goods,
   }),
 };
@@ -36,7 +36,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_GOODS:
       return extendObject(state, {allGoods: action.payload});
-    case ActionType.ADD_SELECTED_GOODS:
+    case ActionType.CHANGE_SELECTED_GOODS:
       return extendObject(state, {selectedGoods: action.payload});
   }
 
