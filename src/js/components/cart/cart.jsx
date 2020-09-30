@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import CartItem from "../cart-item/cart-item.jsx";
 import CartAddition from "../cart-addition/cart-addition.jsx";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer";
+import {ActionCreator} from "../../reducer/cart/cart";
 import {declOfNum, extendObject} from "../../utils/common";
 import {allGoodsToSelectedGoods} from "../../adapters/goods";
 import {Declination} from "../../const";
+import {getAllGoods, getGoodsCount, getGoodsTotal, getSelectedGoods} from "../../reducer/cart/selectors";
 
 const Cart = (props) => {
   const {allGoods, selectedGoods, countGoods, totalGoods,
@@ -72,10 +73,10 @@ Cart.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  allGoods: state.allGoods,
-  selectedGoods: state.selectedGoods,
-  countGoods: state.selectedGoods.reduce((acc, it) => acc + it.count, 0),
-  totalGoods: state.selectedGoods.reduce((acc, it) => acc + it.price * it.count, 0),
+  allGoods: getAllGoods(state),
+  selectedGoods: getSelectedGoods(state),
+  countGoods: getGoodsCount(state),
+  totalGoods: getGoodsTotal(state),
 });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {

@@ -1,6 +1,6 @@
-import {extendObject} from "./utils/common";
-import {goods as MockGoods} from "./mocks/goods";
-import {parseGoodsList} from "./adapters/goods";
+import {extendObject} from "../../utils/common";
+import {goods as MockGoods} from "../../mocks/goods";
+// import {parseGoodsList} from "./adapters/goods";
 
 const initialState = {
   allGoods: [],
