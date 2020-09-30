@@ -10,7 +10,7 @@ describe(`Snapshot tests for Cart`, () => {
           <Cart
             allGoods={allGoods}
             selectedGoods={[]}
-            countGoods={0}
+            quantityGoods={0}
             totalGoods={0}
             addGoods={() => {}}
             deleteGoods={() => {}}
@@ -26,7 +26,7 @@ describe(`Snapshot tests for Cart`, () => {
           <Cart
             allGoods={allGoods}
             selectedGoods={selectedGoods}
-            countGoods={5}
+            quantityGoods={5}
             totalGoods={1350}
             addGoods={() => {}}
             deleteGoods={() => {}}

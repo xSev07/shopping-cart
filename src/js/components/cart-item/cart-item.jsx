@@ -4,9 +4,9 @@ import Counter from "../counter/counter.jsx";
 
 const CartItem = (props) => {
   const {goods, onDeleteButtonClick, onCounterChange} = props;
-  const {id, name, price, count, picture} = goods;
+  const {id, name, price, quantity, picture} = goods;
   const counterRef = useRef(null);
-  const totalPrice = count === 1 ? price : price * count;
+  const totalPrice = quantity === 1 ? price : price * quantity;
 
   return (
     <li className="cart__item">
@@ -18,7 +18,7 @@ const CartItem = (props) => {
           </h3>
           <div className="cart__price-wrapper">
             <p className="cart__price-total">{totalPrice.toLocaleString()} &#8381;</p>
-            {count > 1 && <p className="cart__price">{count.toLocaleString()} x {price.toLocaleString()} &#8381;</p>}
+            {quantity > 1 && <p className="cart__price">{quantity.toLocaleString()} x {price.toLocaleString()} &#8381;</p>}
           </div>
         </div>
         <div className="cart__row cart-row">
@@ -26,7 +26,7 @@ const CartItem = (props) => {
           <Counter
             ref={counterRef}
             className={`cart__count-wrapper cart-row`}
-            startCount={count}
+            startCount={quantity}
             onChange={(value) => onCounterChange(id, value)}
           />
         </div>
@@ -41,7 +41,7 @@ CartItem.propTypes = {
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     picture: PropTypes.string.isRequired,
-    count: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired,
   }).isRequired,
   onDeleteButtonClick: PropTypes.func.isRequired,
   onCounterChange: PropTypes.func.isRequired,

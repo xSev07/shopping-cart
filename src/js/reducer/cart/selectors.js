@@ -14,14 +14,14 @@ export const getSelectedGoods = (state) => {
 export const getGoodsCount = createSelector(
     getSelectedGoods,
     (selectedGoods) => {
-      return selectedGoods.reduce((acc, it) => acc + it.count, 0);
+      return selectedGoods.reduce((acc, it) => acc + it.quantity, 0);
     }
 );
 
 export const getGoodsTotal = createSelector(
     getSelectedGoods,
     (selectedGoods) => {
-      return selectedGoods.reduce((acc, it) => acc + it.price * it.count, 0);
+      return selectedGoods.reduce((acc, it) => acc + it.price * it.quantity, 0);
     }
 );
 

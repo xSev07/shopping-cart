@@ -16,7 +16,7 @@ describe(`E2E tests for Cart`, () => {
         <Cart
           allGoods={allGoods}
           selectedGoods={[]}
-          countGoods={0}
+          quantityGoods={0}
           totalGoods={0}
           addGoods={addGoods}
           deleteGoods={() => {}}
@@ -44,7 +44,7 @@ describe(`E2E tests for Cart`, () => {
         <Cart
           allGoods={allGoods}
           selectedGoods={[selectedGoods[0], selectedGoods[1], selectedGoods[2]]}
-          countGoods={0}
+          quantityGoods={0}
           totalGoods={0}
           addGoods={() => {}}
           deleteGoods={deleteGoods}
@@ -59,14 +59,14 @@ describe(`E2E tests for Cart`, () => {
     expect(deleteGoods).toHaveBeenCalledWith(`2`);
   });
 
-  it(`Should check change goods count`, () => {
+  it(`Should check change goods quantity`, () => {
     const changeGoodsCount = jest.fn();
 
     const cart = mount(
         <Cart
           allGoods={allGoods}
           selectedGoods={[selectedGoods[0]]}
-          countGoods={0}
+          quantityGoods={0}
           totalGoods={0}
           addGoods={() => {}}
           deleteGoods={() => {}}
@@ -88,7 +88,7 @@ describe(`E2E tests for Cart`, () => {
         <Cart
           allGoods={allGoods}
           selectedGoods={[selectedGoods[0], selectedGoods[1]]}
-          countGoods={0}
+          quantityGoods={0}
           totalGoods={0}
           addGoods={() => {}}
           deleteGoods={() => {}}

@@ -14,23 +14,23 @@ export const parseGoodsList = (data) => {
 /**
  * Преобразует товар общего списка в выбранный товар
  * @param {Object} goods товар общего списка
- * @param {number} count количество
+ * @param {number} quantity количество
  * @return {{price: number, name: string, count: number, id: string, picture: string}} выбранный товар
  */
-export const allGoodsToSelectedGoods = (goods, count) => {
+export const allGoodsToSelectedGoods = (goods, quantity) => {
   return {
     id: goods.id,
     name: goods.name,
     price: goods.price,
     picture: goods.picture,
-    count,
+    quantity,
   };
 };
 
 export const selectedGoodsToCartResult = (goods) => {
   return goods.map((it) => ({
     id: it.id,
-    quantity: it.count,
-    total: it.count * it.price
+    quantity: it.quantity,
+    total: it.quantity * it.price
   }));
 };

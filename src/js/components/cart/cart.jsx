@@ -21,9 +21,9 @@ import {
 } from "../../reducer/cart/selectors";
 
 const Cart = (props) => {
-  const {allGoods, onFormSubmit, selectedGoods, countGoods, totalGoods,
+  const {allGoods, onFormSubmit, selectedGoods, quantityGoods, totalGoods,
     addGoods, deleteGoods, changeGoodsCount} = props;
-  const declGoods = declOfNum(countGoods, Declination.GOODS);
+  const declGoods = declOfNum(quantityGoods, Declination.GOODS);
 
   const handleFormSubmit = () => {
     onFormSubmit(selectedGoodsToCartResult(selectedGoods));
@@ -46,13 +46,13 @@ const Cart = (props) => {
           </ul>
           <div className="cart__total">
             <div className="cart__row cart__total-row cart-row">
-              <p className="cart__total-count">В корзине {countGoods.toLocaleString()} {declGoods}</p>
+              <p className="cart__total-count">В корзине {quantityGoods.toLocaleString()} {declGoods}</p>
               <p className="cart__total-price">{totalGoods.toLocaleString()} &#8381;</p>
             </div>
             <button
               className="cart__submit cart-button cart-button--attention"
               type="submit"
-              disabled={countGoods === 0}
+              disabled={quantityGoods === 0}
             >
               Продолжить оформление
             </button>
@@ -77,9 +77,9 @@ Cart.propTypes = {
         name: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
         picture: PropTypes.string.isRequired,
-        count: PropTypes.number.isRequired,
+        quantity: PropTypes.number.isRequired,
       })).isRequired,
-  countGoods: PropTypes.number.isRequired,
+  quantityGoods: PropTypes.number.isRequired,
   totalGoods: PropTypes.number.isRequired,
   addGoods: PropTypes.func.isRequired,
   deleteGoods: PropTypes.func.isRequired,
@@ -90,7 +90,7 @@ Cart.propTypes = {
 const mapStateToProps = (state, ownProps) => ({
   allGoods: ownProps.allGoods || getAllGoods(state),
   selectedGoods: getSelectedGoods(state),
-  countGoods: getGoodsCount(state),
+  quantityGoods: getGoodsCount(state),
   totalGoods: getGoodsTotal(state),
   state,
 });
@@ -110,7 +110,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       newSelectedGoods.push(allGoodsToSelectedGoods(currentGoods, value));
     } else {
       // Заменяет количество в уже добавленном товаре
-      newSelectedGoods = replaceNumberPropsOnArrayElement(selectedGoods, index, value, `count`, true);
+      newSelectedGoods = replaceNumberPropsOnArrayElement(selectedGoods, index, value, `quantity`, true);
     }
     dispatch(ActionCreator.changeSelectedGoods(newSelectedGoods));
   };
@@ -123,7 +123,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 
   const changeGoodsCount = (id, value) => {
     const index = getSelectedGoodsIndexByID(state, id);
-    const newSelectedGoods = replaceNumberPropsOnArrayElement(selectedGoods, index, value, `count`, false);
+    const newSelectedGoods = replaceNumberPropsOnArrayElement(selectedGoods, index, value, `quantity`, false);
     dispatch(ActionCreator.changeSelectedGoods(newSelectedGoods));
   };
 
