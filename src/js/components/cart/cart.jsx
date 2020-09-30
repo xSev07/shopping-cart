@@ -10,7 +10,7 @@ import {
   extendObject,
   replaceNumberPropsOnArrayElement
 } from "../../utils/common";
-import {allGoodsToSelectedGoods} from "../../adapters/goods";
+import {allGoodsToSelectedGoods, selectedGoodsToCartResult} from "../../adapters/goods";
 import {Declination} from "../../const";
 import {
   getAllGoods, getGoodsByID,
@@ -21,16 +21,20 @@ import {
 } from "../../reducer/cart/selectors";
 
 const Cart = (props) => {
-  const {allGoods, selectedGoods, countGoods, totalGoods,
-    addGoods, deleteGoods, changeGoodsCount, onFormSubmit} = props;
+  const {allGoods, onFormSubmit, selectedGoods, countGoods, totalGoods,
+    addGoods, deleteGoods, changeGoodsCount} = props;
   const declGoods = declOfNum(countGoods, Declination.GOODS);
+
+  const handleFormSubmit = () => {
+    onFormSubmit(selectedGoodsToCartResult(selectedGoods));
+  };
 
   return (
     <>
       <CartAddition allGoods={allGoods} onFormSubmit={addGoods}/>
       <section className="cart container">
         <h2 className="visually-hidden">Товары в корзине</h2>
-        <form className="cart__form" onSubmit={onFormSubmit}>
+        <form className="cart__form" onSubmit={handleFormSubmit}>
           <ul className="cart__list">
             {selectedGoods.map((it) =>
               <CartItem
@@ -83,8 +87,8 @@ Cart.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  allGoods: getAllGoods(state),
+const mapStateToProps = (state, ownProps) => ({
+  allGoods: ownProps.allGoods || getAllGoods(state),
   selectedGoods: getSelectedGoods(state),
   countGoods: getGoodsCount(state),
   totalGoods: getGoodsTotal(state),

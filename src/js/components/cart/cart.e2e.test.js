@@ -80,4 +80,37 @@ describe(`E2E tests for Cart`, () => {
     expect(changeGoodsCount).toHaveBeenCalledTimes(1);
     expect(changeGoodsCount).toHaveBeenCalledWith(`1`, 2);
   });
+
+  it(`Should check form submit`, () => {
+    const onFormSubmit = jest.fn();
+
+    const cart = mount(
+        <Cart
+          allGoods={allGoods}
+          selectedGoods={[selectedGoods[0], selectedGoods[1]]}
+          countGoods={0}
+          totalGoods={0}
+          addGoods={() => {}}
+          deleteGoods={() => {}}
+          changeGoodsCount={() => {}}
+          onFormSubmit={onFormSubmit}
+        />
+    );
+    const plusButton = cart.find(`.cart__submit`);
+    plusButton.simulate(`submit`);
+
+    expect(onFormSubmit).toHaveBeenCalledTimes(1);
+    expect(onFormSubmit).toHaveBeenCalledWith([
+      {
+        id: `1`,
+        quantity: 2,
+        total: 2 * 12690,
+      },
+      {
+        id: `2`,
+        quantity: 1,
+        total: 29490,
+      }
+    ]);
+  });
 });

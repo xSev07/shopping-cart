@@ -26,3 +26,11 @@ export const allGoodsToSelectedGoods = (goods, count) => {
     count,
   };
 };
+
+export const selectedGoodsToCartResult = (goods) => {
+  return goods.map((it) => ({
+    id: it.id,
+    quantity: it.count,
+    total: it.count * it.price
+  }));
+};
