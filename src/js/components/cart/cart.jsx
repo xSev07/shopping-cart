@@ -100,10 +100,12 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     let newSelectedGoods = [];
     const index = getSelectedGoodsIndexByID(state, id);
     if (index === -1) {
+      // Добавляет новый товар в список
       const currentGoods = getGoodsByID(state, id);
       newSelectedGoods = selectedGoods.slice();
       newSelectedGoods.push(allGoodsToSelectedGoods(currentGoods, value));
     } else {
+      // Заменяет количество в уже добавленном товаре
       newSelectedGoods = replaceNumberPropsOnArrayElement(selectedGoods, index, value, `count`, true);
     }
     dispatch(ActionCreator.changeSelectedGoods(newSelectedGoods));
