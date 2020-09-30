@@ -22,3 +22,26 @@ export const declOfNum = (n, textForms) => {
   }
   return textForms[2];
 };
+
+export const replaceArrayElement = (array, element, index) => {
+  return [...array.slice(0, index), element, ...array.slice(index + 1)];
+};
+
+export const deleteArrayElement = (array, index) => {
+  return [...array.slice(0, index), ...array.slice(index + 1)];
+};
+
+/**
+ * Заменяет значение числового реквизита в элементе массива
+ * @param {Array.<Object>} array - массив с объектами
+ * @param {number} index - номер элемента
+ * @param {number} value - значение, на которое заменить
+ * @param {string} propsName - имя реквизита, у которого заменить значение
+ * @param {boolean} addCurrentValue - истина: добавить value к текущему значению, ложь: заменить на value
+ * @return {Array.<Object>} - возвращает новый массив с заменённым элементом
+ */
+export const replaceNumberPropsOnArrayElement = (array, index, value, propsName, addCurrentValue = false) => {
+  const currentElement = array[index];
+  const newElement = extendObject(currentElement, {[propsName]: value + (addCurrentValue ? currentElement[propsName] : 0)});
+  return replaceArrayElement(array, newElement, index);
+};

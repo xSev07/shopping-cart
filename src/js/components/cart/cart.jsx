@@ -4,10 +4,21 @@ import CartItem from "../cart-item/cart-item.jsx";
 import CartAddition from "../cart-addition/cart-addition.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/cart/cart";
-import {declOfNum, extendObject} from "../../utils/common";
+import {
+  declOfNum,
+  deleteArrayElement,
+  extendObject,
+  replaceNumberPropsOnArrayElement
+} from "../../utils/common";
 import {allGoodsToSelectedGoods} from "../../adapters/goods";
 import {Declination} from "../../const";
-import {getAllGoods, getGoodsCount, getGoodsTotal, getSelectedGoods} from "../../reducer/cart/selectors";
+import {
+  getAllGoods, getGoodsByID,
+  getGoodsCount,
+  getGoodsTotal,
+  getSelectedGoods,
+  getSelectedGoodsIndexByID
+} from "../../reducer/cart/selectors";
 
 const Cart = (props) => {
   const {allGoods, selectedGoods, countGoods, totalGoods,
@@ -77,37 +88,36 @@ const mapStateToProps = (state) => ({
   selectedGoods: getSelectedGoods(state),
   countGoods: getGoodsCount(state),
   totalGoods: getGoodsTotal(state),
+  state,
 });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  const {allGoods, selectedGoods} = stateProps;
+  const {state, selectedGoods} = stateProps;
   const {dispatch} = dispatchProps;
   const reverseSelectedGoods = selectedGoods.slice().reverse();
+
   const addGoods = (id, value) => {
     let newSelectedGoods = [];
-    const index = selectedGoods.findIndex((it) => it.id === id);
+    const index = getSelectedGoodsIndexByID(state, id);
     if (index === -1) {
-      const currentGoods = allGoods.find((it) => it.id === id);
+      const currentGoods = getGoodsByID(state, id);
       newSelectedGoods = selectedGoods.slice();
       newSelectedGoods.push(allGoodsToSelectedGoods(currentGoods, value));
     } else {
-      const currentGoods = selectedGoods[index];
-      const newGoods = extendObject(currentGoods, {count: currentGoods.count + value});
-      newSelectedGoods = [...selectedGoods.slice(0, index), newGoods, ...selectedGoods.slice(index + 1)];
+      newSelectedGoods = replaceNumberPropsOnArrayElement(selectedGoods, index, value, `count`, true);
     }
     dispatch(ActionCreator.changeSelectedGoods(newSelectedGoods));
   };
 
   const deleteGoods = (id) => {
-    const index = selectedGoods.findIndex((it) => it.id === id);
-    const newSelectedGoods = [...selectedGoods.slice(0, index), ...selectedGoods.slice(index + 1)];
+    const index = getSelectedGoodsIndexByID(state, id);
+    const newSelectedGoods = deleteArrayElement(selectedGoods, index);
     dispatch(ActionCreator.changeSelectedGoods(newSelectedGoods));
   };
 
   const changeGoodsCount = (id, value) => {
-    const index = selectedGoods.findIndex((it) => it.id === id);
-    const newGoods = extendObject(selectedGoods[index], {count: value});
-    const newSelectedGoods = [...selectedGoods.slice(0, index), newGoods, ...selectedGoods.slice(index + 1)];
+    const index = getSelectedGoodsIndexByID(state, id);
+    const newSelectedGoods = replaceNumberPropsOnArrayElement(selectedGoods, index, value, `count`, false);
     dispatch(ActionCreator.changeSelectedGoods(newSelectedGoods));
   };
 

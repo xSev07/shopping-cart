@@ -24,3 +24,19 @@ export const getGoodsTotal = createSelector(
       return selectedGoods.reduce((acc, it) => acc + it.price * it.count, 0);
     }
 );
+
+export const getSelectedGoodsIndexByID = createSelector(
+    getSelectedGoods,
+    (state, id) => id,
+    (selectedGoods, id) => {
+      return selectedGoods.findIndex((it) => it.id === id);
+    }
+);
+
+export const getGoodsByID = createSelector(
+    getAllGoods,
+    (state, id) => id,
+    (allGoods, id) => {
+      return allGoods.find((it) => it.id === id);
+    }
+);

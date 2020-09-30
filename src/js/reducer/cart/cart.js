@@ -24,6 +24,7 @@ const ActionCreator = {
 };
 
 const Operation = {
+  // eslint-disable-next-line
   loadGoods: () => (dispatch, getState, api) => {
     dispatch(ActionCreator.loadGoods(MockGoods));
 
