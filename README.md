@@ -22,7 +22,6 @@
 4. Запуск и сборка
     1. запуск локального сервера для разработки: "npm run dev" (открыть в браузере http://localhost:1337/ )
     2. сборка проекта "npm run build" - проект будет собран в папку build\
-5. Моковые данные можно изменить в: src\js\mocks\catalog-items.js
 
 ТЗ:
 Create shopping cart with React & Redux.
